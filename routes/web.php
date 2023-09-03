@@ -29,6 +29,7 @@ Route::post('/changeLang',function(){
         return redirect('/');
         return view('welcome');
     }
+    session()->put('locale', "en");
     return redirect('/');
 });
 Route::get('/changeLang', function () {
