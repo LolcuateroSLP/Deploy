@@ -19,12 +19,14 @@ Route::post('/changeLang',function(){
     if($locale == "es"){
         App::setLocale('en');
         session()->put('locale', "en");
+        return redirect()->to('/');
         return view('welcome');
     }
 
     if($locale == "en"){
         App::setLocale('es');
         session()->put('locale', "es");
+        return redirect()->to('/');
         return view('welcome');
     }
 });
