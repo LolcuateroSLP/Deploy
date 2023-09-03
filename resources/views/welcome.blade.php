@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        {{-- <meta charset="utf-8"> --}}
+        {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="{{url('css/base.css')}}" rel="stylesheet">
         <link href="{{url('css/main.css')}}" rel="stylesheet">
         <link href="{{url('css/vendor.css')}}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
         <!-- Compiled and minified CSS -->
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
 
@@ -41,10 +41,21 @@
         
     </head>
     <body id="top">
-    
+        <header>   	
+            <form action="{{url('changeLang')}}" method="POST" id="myForm">
+                @csrf
+                {{ method_field('POST'); }}
+                @if(App::isLocale('es'))
+                    <a class="menu-toggle" href="#" onClick="changeLang()"><img src="{{url('Imagenes/us.png')}}" alt=""></a>
+                @else
+                    <a class="menu-toggle" href="#" onClick="changeLang()"><img src="{{url('Imagenes/mex.png')}}" alt=""></a>
+                @endif
+            </form> 
+            	
+        </header> <!-- /header -->
         <!-- intro section
        ================================================== -->
-       <section id="intro">   
+       <section id="intro">
     
            <div class="intro-overlay"></div>	
     
@@ -53,8 +64,8 @@
     
                    <div class="col-twelve">
     
-                       <h5>Hello, World.</h5>
-                       <h1>I'm Edwin Issac Lopez Sanchez.</h1>
+                       <h5>{{ trans('general.helloWorld') }}</h5>
+                       <h1>{{trans('general.imEdwinIssacLopezSanchez')}}</h1>
     
                        <p class="intro-position">
                            <span>Front-end Developer</span>
@@ -62,21 +73,12 @@
                            <span>Managment DataBase</span> 
                        </p>
     
-                       <a class="button stroke smoothscroll" href="#about" title="">More About Me</a>
+                       <a class="button stroke smoothscroll" href="#about" title="">{{trans('general.moreAboutMe')}}</a>
     
                    </div>  
                    
                </div>   		 		
-           </div> <!-- /intro-content --> 
-    
-           {{-- <ul class="intro-social">        
-             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-             <li><a href="#"><i class="fa fa-behance"></i></a></li>
-             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-             <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-          </ul> <!-- /intro-social -->      	 --}}
-    
+           </div>
        </section> <!-- /intro -->
     
     
@@ -337,260 +339,6 @@
            </div> <!-- /resume-timeline -->
             
         </section> <!-- /features -->
-    
-    
-        <!-- Portfolio Section
-       ================================================== -->
-        <section id="portfolio">
-    
-            <div class="row section-intro">
-               <div class="col-twelve">
-    
-                   <h5>Portfolio</h5>
-                   <h1>Check Out Some of My Works.</h1>
-    
-                   <p class="lead">Lorem ipsum Do commodo in proident enim in dolor cupidatat adipisicing dolore officia nisi aliqua incididunt Ut veniam lorem ipsum Consectetur ut in in eu do.</p>
-    
-               </div>   		
-           </div> <!-- /section-intro--> 
-    
-           <div class="row portfolio-content">
-    
-               <div class="col-twelve">
-    
-                   <!-- portfolio-wrapper -->
-                 <div id="folio-wrapper" class="block-1-2 block-mob-full stack">
-    
-                     <div class="bgrid folio-item">
-                       <div class="item-wrap">
-                           <img src="images/portfolio/liberty.jpg" alt="Liberty">
-                          <a href="#modal-01" class="overlay">	                  	           
-                             <div class="folio-item-table">
-                                 <div class="folio-item-cell">
-                                            <h3 class="folio-title">Liberty</h3>	     					    
-                                              <span class="folio-types">
-                                                  Graphic Design
-                                            </span>
-                                        </div>	                      	
-                             </div>                    
-                          </a>
-                       </div>	               
-                        </div> <!-- /folio-item -->
-    
-                        <div class="bgrid folio-item">
-                       <div class="item-wrap">
-                           <img src="images/portfolio/shutterbug.jpg" alt="Shutterbug">
-                           <a href="#modal-02" class="overlay">              		                  
-                             <div class="folio-item-table">
-                                 <div class="folio-item-cell">
-                                     <h3 class="folio-title">Shutterbug</h3>	     					    
-                                             <span class="folio-types">
-                                                  Web Design
-                                           </span>		     		
-                                        </div> 	                      	
-                             </div>                    
-                          </a>
-                       </div>
-                        </div> <!-- /folio-item -->
-    
-                    <div class="bgrid folio-item">
-                       <div class="item-wrap">
-                           <img src="images/portfolio/clouds.jpg"alt="Clouds">
-                          <a href="#modal-03" class="overlay">             		                  
-                             <div class="folio-item-table">
-                                 <div class="folio-item-cell">
-                                     <h3 class="folio-title">Clouds</h3>	     					    
-                                             <span class="folio-types">
-                                                  Web Design
-                                           </span>		     		
-                                        </div> 	                      	
-                             </div>                    
-                          </a>
-                       </div>
-                        </div> <!-- /folio-item -->
-    
-                    <div class="bgrid folio-item">
-                       <div class="item-wrap">
-                           <img src="images/portfolio/beetle.jpg" alt="Beetle">
-                          <a href="#modal-04" class="overlay">                  	                 
-                             <div class="folio-item-table">
-                                 <div class="folio-item-cell">
-                                     <h3 class="folio-title">Beetle</h3>	     					    
-                                             <span class="folio-types">
-                                                  Branding
-                                           </span>		     		
-                                        </div>  	                      	
-                             </div>                    
-                          </a>
-                       </div>
-                        </div> <!-- /folio-item -->     
-    
-                        <div class="bgrid folio-item">
-                       <div class="item-wrap">
-                           <img src="images/portfolio/lighthouse.jpg" alt="Lighthouse">
-                          <a href="#modal-05" class="overlay">             		                  
-                             <div class="folio-item-table">
-                                 <div class="folio-item-cell">
-                                     <h3 class="folio-title">Lighthouse</h3>	     					    
-                                             <span class="folio-types">
-                                                  Web Development
-                                           </span>		     		
-                                        </div> 	                      	
-                             </div>                    
-                          </a>
-                       </div>
-                        </div> <!-- /folio-item -->
-    
-                    <div class="bgrid folio-item">
-                       <div class="item-wrap">
-                           <img src="images/portfolio/salad.jpg" alt="Salad">
-                          <a href="#modal-06" class="overlay">
-                             <div class="folio-item-table">
-                                 <div class="folio-item-cell">
-                                     <h3 class="folio-title">Salad</h3>	     					    
-                                             <span class="folio-types">
-                                                  Branding
-                                           </span>		     		
-                                        </div>	                      	
-                             </div>                    
-                          </a>
-                       </div>
-                        </div> <!-- /folio-item -->   
-    
-                    <!-- modal popups - begin
-                    ============================================================= -->
-                    <div id="modal-01" class="popup-modal slider mfp-hide">	
-    
-                             <div class="media">
-                                 <img src="images/portfolio/modals/m-liberty.jpg" alt="" />
-                             </div>      	
-    
-                           <div class="description-box">
-                              <h4>Liberty</h4>		      
-                              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-    
-                              <div class="categories">Web Development</div>			               
-                           </div>
-    
-                         <div class="link-box">
-                            <a href="http://www.behance.net">Details</a>
-                              <a href="#" class="popup-modal-dismiss">Close</a>
-                         </div>		      
-    
-                       </div> <!-- /modal-01 -->
-    
-                       <div id="modal-02" class="popup-modal slider mfp-hide">	
-    
-                             <div class="media">
-                                 <img src="images/portfolio/modals/m-shutterbug.jpg" alt="" />
-                             </div>      	
-    
-                           <div class="description-box">
-                              <h4>Shutterbug</h4>		      
-                              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-    
-                              <div class="categories">Web Design</div>			               
-                           </div>
-    
-                         <div class="link-box">
-                            <a href="http://www.behance.net">Details</a>
-                              <a href="#" class="popup-modal-dismiss">Close</a>
-                         </div>		      
-    
-                       </div> <!-- /modal-02 -->
-    
-                       <div id="modal-03" class="popup-modal slider mfp-hide">	
-    
-                             <div class="media">
-                                 <img src="images/portfolio/modals/m-clouds.jpg" alt="" />
-                             </div>      	
-    
-                           <div class="description-box">
-                              <h4>Clouds</h4>		      
-                              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-    
-                              <div class="categories">Web Design</div>			               
-                           </div>
-    
-                         <div class="link-box">
-                            <a href="http://www.behance.net">Details</a>
-                              <a href="#" class="popup-modal-dismiss">Close</a>
-                         </div>		      
-    
-                       </div> <!-- /modal-03 -->
-    
-                       <div id="modal-04" class="popup-modal slider mfp-hide">	
-    
-                             <div class="media">
-                                 <img src="images/portfolio/modals/m-beetle.jpg" alt="" />
-                             </div>      	
-    
-                           <div class="description-box">
-                              <h4>Beetle</h4>		      
-                              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-    
-                              <div class="categories">Branding</div>			               
-                           </div>
-    
-                         <div class="link-box">
-                            <a href="http://www.behance.net">Details</a>
-                              <a href="#" class="popup-modal-dismiss">Close</a>
-                         </div>		      
-    
-                       </div> <!-- /modal-04 -->
-    
-                       <div id="modal-05" class="popup-modal slider mfp-hide">	
-    
-                             <div class="media">
-                                 <img src="images/portfolio/modals/m-lighthouse.jpg" alt="" />
-                             </div>      	
-    
-                           <div class="description-box">
-                              <h4>Lighthouse</h4>		      
-                              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-    
-                              <div class="categories">Web Development</div>			               
-                           </div>
-    
-                         <div class="link-box">
-                            <a href="http://www.behance.net">Details</a>
-                              <a href="#" class="popup-modal-dismiss">Close</a>
-                         </div>		      
-    
-                       </div> <!-- /modal-05 -->
-    
-                       <div id="modal-06" class="popup-modal slider mfp-hide">	
-    
-                             <div class="media">
-                                 <img src="images/portfolio/modals/m-salad.jpg" alt="" />
-                             </div>      	
-    
-                           <div class="description-box">
-                              <h4>Salad</h4>		      
-                              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-    
-                              <div class="categories">Branding</div>			               
-                           </div>
-    
-                         <div class="link-box">
-                            <a href="http://www.behance.net">Details</a>
-                              <a href="#" class="popup-modal-dismiss">Close</a>
-                         </div>		      
-    
-                       </div> <!-- /modal-06 -->
-    
-    
-                       <!-- modal popups - end
-                    ============================================================= -->
-    
-                 </div> <!-- /portfolio-wrapper --> 
-    
-               </div>  <!-- /twelve -->   
-    
-           </div> <!-- /portfolio-content --> 
-            
-        </section> <!-- /portfolio --> 
-    
     
         <!-- CTA Section
        ================================================== -->
@@ -1005,6 +753,10 @@
        <script src="js/jquery-2.1.3.min.js"></script>
        <script src="js/plugins.js"></script>
        <script src="js/main.js"></script>
-    
+        <script >
+            function changeLang(){
+                document.getElementById("myForm").submit();
+            }
+        </script>
     </body>
 </html>

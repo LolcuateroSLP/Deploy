@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/changeLang',function(){
+    $locale = session()->get('locale');
+    if($locale == "es"){
+        App::setLocale('en');
+        session()->put('locale', "en");
+        return view('welcome');
+    }
+
+    if($locale == "en"){
+        App::setLocale('es');
+        session()->put('locale', "es");
+        return view('welcome');
+    }
+
+    return view('welcome');
+});
 Route::get('/', function () {
     return view('welcome');
 });
