@@ -29,6 +29,7 @@ Route::post('/changeLang',function(){
         return redirect('/');
         return view('welcome');
     }
+    return redirect('/');
 });
 Route::get('/changeLang', function () {
     return view('welcome');
