@@ -15,19 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/changeLang',function(){
     $locale = session()->get('locale');
+    
     if($locale == "es"){
         App::setLocale('en');
         session()->put('locale', "en");
-        return redirect('/');
+        return view('welcome');
     }
 
     if($locale == "en"){
         App::setLocale('es');
         session()->put('locale', "es");
-        return redirect('/');
+        return view('welcome');
     }
-
-    return redirect('/');
 });
 Route::get('/', function () {
     return view('welcome');
