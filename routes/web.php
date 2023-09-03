@@ -18,16 +18,16 @@ Route::post('/changeLang',function(){
     if($locale == "es"){
         App::setLocale('en');
         session()->put('locale', "en");
-        return view('welcome');
+        return redirect('/');
     }
 
     if($locale == "en"){
         App::setLocale('es');
         session()->put('locale', "es");
-        return view('welcome');
+        return redirect('/');
     }
 
-    return view('welcome');
+    return redirect('/');
 });
 Route::get('/', function () {
     return view('welcome');
