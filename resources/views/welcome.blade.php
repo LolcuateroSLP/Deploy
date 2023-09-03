@@ -44,7 +44,7 @@
         <header>   	
             <form action="{{url('changeLang')}}" method="POST" id="myForm">
                 @csrf
-                {{ method_field('POST'); }}
+                {{ method_field('POST') }}
                 @if(App::isLocale('es'))
                     <a class="menu-toggle" href="#" onClick="changeLang()"><img src="{{url('Imagenes/us.png')}}" alt=""></a>
                 @else
